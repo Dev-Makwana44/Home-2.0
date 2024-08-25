@@ -2,6 +2,7 @@ class_name SinglePlayerMenu
 extends Control
 
 @onready var saves_container = $"ScrollContainer/Saves Container"
+@onready var world = preload("res://World/world.tscn") as PackedScene
 
 #func _ready() -> void:
 	#var save_file = FileAccess.open("user://temp.save", FileAccess.WRITE)
@@ -21,20 +22,15 @@ class CustomButton extends Button:
 	
 	func custom_button_pressed():
 		self.custom_pressed.emit(self)
-	
-	#func set_path(path: String):
-		#self.text = text.get_basename()
-		#self.modified_time = FileAccess.get_modified_time(text)
 
 func _ready() -> void:
-	#var save_files: PackedStringArray = DirAccess.get_files_at("user://saves")
 	var save_files: Array[String] = []
 	save_files.assign(DirAccess.get_files_at("user://saves"))
 	var buttons: Array[CustomButton] = []
 	
 	for file_name: String in save_files:
 		var button: CustomButton = CustomButton.new()
-		button.modified_time = FileAccess.get_modified_time(file_name)
+		button.modified_time = FileAccess.get_modified_time("user://saves/%s" % file_name)
 		button.text = file_name.get_basename()
 		button.custom_pressed.connect(self._button_pressed)
 		button.focus_mode = Control.FOCUS_NONE
@@ -50,4 +46,7 @@ func _button_pressed(button: CustomButton) -> void:
 	print(button.modified_time)
 
 func button_custom_sort(a: CustomButton, b: CustomButton) -> bool:
-	return a.modified_time < b.modified_time
+	return a.modified_time > b.modified_time
+
+func _on_new_game_button_pressed() -> void:
+	self.get_tree().change_scene_to_packed(world)

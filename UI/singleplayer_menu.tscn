@@ -50,3 +50,10 @@ grow_vertical = 2
 [node name="Saves Container" type="VBoxContainer" parent="ScrollContainer"]
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 2
+
+[node name="New Game Button" type="Button" parent="ScrollContainer/Saves Container"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "New Game"
+
+[connection signal="pressed" from="ScrollContainer/Saves Container/New Game Button" to="." method="_on_new_game_button_pressed"]

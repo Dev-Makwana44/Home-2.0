@@ -2,7 +2,7 @@ class_name SinglePlayerMenu
 extends Control
 
 @onready var saves_container = $"ScrollContainer/Saves Container"
-@onready var world = preload("res://World/world.tscn") as PackedScene
+@onready var world = preload("res://world/world.tscn") as PackedScene
 
 #func _ready() -> void:
 	#var save_file = FileAccess.open("user://temp.save", FileAccess.WRITE)

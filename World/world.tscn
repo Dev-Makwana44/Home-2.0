@@ -8,7 +8,7 @@ size = Vector3(100, 1, 100)
 [sub_resource type="BoxMesh" id="BoxMesh_xn8cv"]
 size = Vector3(100, 1, 100)
 
-[node name="World" type="Node"]
+[node name="World" type="Node3D"]
 
 [node name="Ground" type="StaticBody3D" parent="."]
 

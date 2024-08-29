@@ -1,15 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://g3i3ehcg5wqr"]
+[gd_scene load_steps=7 format=3 uid="uid://g3i3ehcg5wqr"]
 
 [ext_resource type="PackedScene" uid="uid://86m3t2btiwrp" path="res://vehicles/car_base.tscn" id="1_wqia0"]
 [ext_resource type="Shader" path="res://world/world.gdshader" id="2_ie6q0"]
 [ext_resource type="Script" path="res://world/mesh_instance_3d.gd" id="2_lsg1v"]
 [ext_resource type="Texture2D" uid="uid://bm0x0m2d1x4gu" path="res://world/heightmap.exr" id="3_1lgeh"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qfidt"]
-size = Vector3(100, 1, 100)
-
-[sub_resource type="BoxMesh" id="BoxMesh_xn8cv"]
-size = Vector3(100, 1, 100)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_58q08"]
 render_priority = 0
@@ -23,24 +17,15 @@ subdivide_depth = 50
 
 [node name="World" type="Node3D"]
 
-[node name="Ground" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-shape = SubResource("BoxShape3D_qfidt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("BoxMesh_xn8cv")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 73, 0)
 shadow_enabled = true
 
 [node name="CarBase" parent="." instance=ExtResource("1_wqia0")]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0.0234747, 0.596217, 0.194456)
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0.0234747, 58.6685, 0.194456)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_58q08")
 mesh = SubResource("PlaneMesh_swuy2")
 script = ExtResource("2_lsg1v")
